@@ -1,0 +1,9 @@
+# E-COMMERCE WEBSITE ADMIN PANEL CODE HERE
+{
+    "started-on" : "22-nov-2024",
+    "deployed-on" : "",
+    "finished-on" : "",
+}
+
+TECH_USED = [ REACT.JS, NEXT.JS, MONGODB, TAILWIND, STYLED COMPONENTS ]
+
