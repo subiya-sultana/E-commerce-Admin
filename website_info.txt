@@ -3,7 +3,8 @@
     "started-on" : "22-nov-2024",
     "deployed-on" : "",
     "finished-on" : "",
+    "target-to-finish-on" : "20-dec-2024"
 }
 
-TECH_USED = [ REACT.JS, NEXT.JS, MONGODB, TAILWIND, STYLED COMPONENTS ]
+TECH_USED = [ REACT.JS, NEXT.JS, MONGODB, TAILWIND, STYLED COMPONENTS, NEXTAUTH.JS ]
 
