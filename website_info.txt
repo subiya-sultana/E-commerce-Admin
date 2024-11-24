@@ -6,5 +6,8 @@
     "target-to-finish-on" : "20-dec-2024"
 }
 
-TECH_USED = [ REACT.JS, NEXT.JS, MONGODB, TAILWIND, STYLED COMPONENTS, NEXTAUTH.JS ]
+TECH_AND_TOOLS_USED = [ REACT.JS, NEXT.JS, MONGODB, TAILWIND, STYLED COMPONENTS, NEXTAUTH.JS, GOOGLE CLOUD CONSOLE,  ]
 
+# THINGS I AM LEARNING WHILE MAKING THIS PROJECT
+1. NEXTAUTH - i didn't knew anything about this
+2. Google cloud console - i didn't learned anything about this but still using it 
