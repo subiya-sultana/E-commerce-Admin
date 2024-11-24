@@ -1,31 +1,22 @@
-import localFont from "next/font/local";
-import { useSession, signIn, signOut } from "next-auth/react"
-
-const geistSans = localFont({
-  src: "./fonts/GeistVF.woff",
-  variable: "--font-geist-sans",
-  weight: "100 900",
-});
-const geistMono = localFont({
-  src: "./fonts/GeistMonoVF.woff",
-  variable: "--font-geist-mono",
-  weight: "100 900",
-});
+/* eslint-disable @next/next/no-img-element */
+import Layout from "@/components/Layout";
+import { useSession } from "next-auth/react";
 
 export default function Home() {
-  const { data: session } = useSession()
-  if(!session) {
-    return (
-      <div className="bg-green-900 w-screen h-screen flex items-center">
-        <div className="text-center w-full">
-          <button className="bg-white p-2 rounded-md" onClick={()=> signIn('google')}>
-            Login With Google
-          </button>
+  const { data: session } = useSession();
+  if(!session) return;
+  return (
+    <Layout>
+      <div className="text-green-900 flex justify-between">
+        <h2>hello, <b>{session?.user?.name}</b></h2>
+        <div className="flex bg-gray-300 text-black gap-1 rounded-lg overflow-hidden">
+          <img src={session?.user?.image} alt="User Image" className="w-8 h-8"/>
+          <span className="py-1 px-2">
+            {session?.user?.name}
+          </span>
         </div>
       </div>
-    )
-  }
-  return (
-    <div>Logged in {session.user.email}</div>
-  );
+      <h1>Dashboard here.... why i am soooo stupiidddddd???? likeeeee whyyyyyyyyyy</h1>
+    </Layout>
+  )
 }
