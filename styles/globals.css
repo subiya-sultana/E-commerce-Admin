@@ -19,3 +19,23 @@ body {
   background: var(--background);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+input, textarea {
+  @apply border-2 border-gray-300 rounded-md px-2 py-1 w-full;
+  @apply mb-2;
+}
+input:focus, textarea:focus {
+  @apply border-green-900 outline-none;
+}
+
+label {
+  @apply text-green-900;
+}
+
+h1 {
+  @apply text-green-900 mb-2 text-2xl font-medium;
+}
+
+.btn-primary {
+  @apply bg-green-900 text-white px-4 py-1 rounded-md;
+}
