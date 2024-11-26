@@ -39,3 +39,16 @@ h1 {
 .btn-primary {
   @apply bg-green-900 text-white px-4 py-1 rounded-md;
 }
+
+table.basic {
+  @apply w-full
+}
+table.basic thead tr td {
+  @apply bg-green-300 ;
+}
+table.basic tr td {
+  @apply border border-green-300 p-1 ;
+}
+table.basic a {
+  @apply bg-green-900 text-white text-sm py-1 px-2 rounded-md inline-flex gap-2;
+}

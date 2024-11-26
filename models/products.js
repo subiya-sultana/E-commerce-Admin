@@ -7,4 +7,4 @@ const ProductSchema = new Schema({
 });
 
 // Use `models.product` if it exists, otherwise create a new model
-export const Product = models.product || model("Product", ProductSchema);
+export const Product = models.Product || model("Product", ProductSchema);
