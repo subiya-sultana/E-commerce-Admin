@@ -11,3 +11,8 @@ TECH_AND_TOOLS_USED = [ REACT.JS, NEXT.JS, MONGODB, TAILWIND, STYLED COMPONENTS,
 # THINGS I AM LEARNING WHILE MAKING THIS PROJECT
 1. NEXTAUTH - i didn't knew anything about this
 2. Google cloud console - i didn't learned anything about this but still using it 
+3. handling API req/res directly from Network tab of browser dev tools
+
+
+NOW:
+1. add close icon on product form

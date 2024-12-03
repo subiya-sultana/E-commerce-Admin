@@ -1,14 +1,16 @@
 import { mongooseConnect } from "@/lib/mongoose";
 import { Product, product } from "@/models/products";
-import mongoose from "mongoose";
-import Products from "../products";
 
 export default async function handleProducts(req, res) {
     const {method} = req;
     await mongooseConnect();
     // api for fetching products
     if (method === 'GET'){
-        res.json(await Product.find());
+        if(req.query?.p_id){
+            res.json(await Product.findOne({_id:req.query.p_id}))
+        }else{
+            res.json(await Product.find());
+        }
     }
 
     // api for creating products
