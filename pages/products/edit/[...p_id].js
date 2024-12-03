@@ -17,6 +17,9 @@ export default function EditProductsPage(){
             setProductInfo(response.data)
             console.log(response.data)
         })
+        .catch((err)=>{
+            console.log("Some error occured: ", err.message)
+        })
     },[p_id])
     console.log()
     return (

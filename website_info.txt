@@ -16,3 +16,6 @@ TECH_AND_TOOLS_USED = [ REACT.JS, NEXT.JS, MONGODB, TAILWIND, STYLED COMPONENTS,
 
 NOW:
 1. add close icon on product form
+2. comment all console.log
+3. add coments on all files
+4. no products to display message but loader while products gets loaded

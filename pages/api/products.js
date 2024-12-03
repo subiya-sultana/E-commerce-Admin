@@ -21,5 +21,21 @@ export default async function handleProducts(req, res) {
         })
         res.json(productDoc)
     }
+
+    // api for updating products
+    if (method === 'PUT'){
+        const {_id, title, description, price} = req.body;
+        await Product.updateOne({_id}, {title, description, price})
+        res.json(true);
+    }
+
+    // api for deleting product
+    if (method === 'DELETE'){
+        if(req.query?.p_id){
+            const {_id} = req.body;
+            await Product.deleteOne({_id:req.query?.p_id})
+            res.json(true)
+        }
+    }
 }
   

@@ -17,15 +17,16 @@ export default function ProductForm({
 
     async function AddProduct(e) {
         e.preventDefault();
+        const data = {title, description, price}
         if(_id){
             // update product
+            await axios.put('/api/products', {...data, _id})
         }else{
             // create product
-            const data = {title, description, price}
-            await axios.post('/api/products', data )
-            setGoToProductsPage(true)
+            await axios.post('/api/products', {...data})
             console.log("new product added")
         }
+        setGoToProductsPage(true)
     }
     if(goToProductsPage == true){
         return router.push('/products');
