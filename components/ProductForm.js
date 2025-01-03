@@ -32,15 +32,17 @@ export default function ProductForm({
     if(goToProductsPage == true){
         return router.push('/products');
     }
+    // function to handle image upload
     async function uploadImages(e){
         console.log(e)
         const files = e.target?.files;
         if(files?.length > 0){
             const data = new FormData();
-            files.forEach(file => {
+            for(const file of files){
                 data.append("file",file)
-            });
+            }
             const res = await axios.post('/api/uploadFile', data)
+            console.log(res.data)
         }
     }
 
