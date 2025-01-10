@@ -13,8 +13,16 @@ export default function ProductForm({
     const [description, setDescription] = useState(existingDescription || '');
     const [price, setPrice] = useState(existingPrice || '');
     const [goToProductsPage, setGoToProductsPage] = useState(false)
+    const [categories, setCategories] = useState([]);
     const router = useRouter();
     console.log("product form data here.... ", existingTitle, existingDescription, existingPrice, _id)
+
+    useEffect(()=>{
+        axios.get('/api/categories').then(result =>{
+            setCategories(result.data);
+            console.log("categoriess aree: ", result.data)
+        })
+    },[])
 
     async function AddProduct(e) {
         e.preventDefault();
@@ -32,6 +40,7 @@ export default function ProductForm({
     if(goToProductsPage == true){
         return router.push('/products');
     }
+
     // function to handle image upload
     async function uploadImages(e){
         console.log(e)
@@ -56,6 +65,15 @@ export default function ProductForm({
                 onChange={e => setTitle(e.target.value)}
                 required
             />
+            <label>Category</label>
+            <select>
+                <option value="">Uncategorized</option>
+                {
+                    categories.length > 0 && categories.map(category => (
+                        <option key={category._id} value={category._id}>{category.name}</option>
+                    ))
+                }
+            </select>
             <label>Product Images</label>
             <div className="mb-2">
                 <label className="cursor-pointer w-24 h-24 bg-gray-300 text-gray-500 text-center flex flex-col items-center justify-center rounded-lg">

@@ -1,6 +1,6 @@
 // handling api's for the product page... hence editing database here, fetching products etc
 import { mongooseConnect } from "@/lib/mongoose";
-import { Product } from "@/models/products";
+import { Product } from "@/models/Products";
 
 export default async function handleProducts(req, res) {
     const {method} = req;

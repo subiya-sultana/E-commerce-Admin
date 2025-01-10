@@ -17,7 +17,10 @@
     "next": "15.0.3",
     "next-auth": "^4.24.10",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "react-sweetalert2": "^0.6.0",
+    "sweetalert2": "^11.15.10",
+    "sweetalert2-react-content": "^5.1.0"
   },
   "devDependencies": {
     "eslint": "^8",
