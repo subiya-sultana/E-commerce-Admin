@@ -5,28 +5,30 @@ import { useEffect, useState } from "react";
 export default function ProductForm({
         _id,
         title: existingTitle,
+        category: existingCategory,
         description: existingDescription,
         price : existingPrice,
-        images
+        images,
     }) {
     const [title, setTitle] = useState(existingTitle || '');
+    const [category, setCategory] = useState(existingCategory || '')
     const [description, setDescription] = useState(existingDescription || '');
     const [price, setPrice] = useState(existingPrice || '');
     const [goToProductsPage, setGoToProductsPage] = useState(false)
-    const [categories, setCategories] = useState([]);
+    const [allCategories, setAllCategories] = useState([]);
     const router = useRouter();
     console.log("product form data here.... ", existingTitle, existingDescription, existingPrice, _id)
 
     useEffect(()=>{
         axios.get('/api/categories').then(result =>{
-            setCategories(result.data);
+            setAllCategories(result.data);
             console.log("categoriess aree: ", result.data)
         })
     },[])
 
     async function AddProduct(e) {
         e.preventDefault();
-        const data = {title, description, price}
+        const data = {title, category, description, price}
         if(_id){
             // update product
             await axios.put('/api/products', {...data, _id})
@@ -66,12 +68,15 @@ export default function ProductForm({
                 required
             />
             <label>Category</label>
-            <select>
+            <select 
+                value={category}
+                onChange={e => setCategory(e.target.value)}
+            >
                 <option value="">Uncategorized</option>
                 {
-                    categories.length > 0 && categories.map(category => (
-                        <option key={category._id} value={category._id}>{category.name}</option>
-                    ))
+                    allCategories.length > 0 && allCategories.map(c => {
+                        return <option key={c._id} value={c._id}>{c.name}</option>
+                    })
                 }
             </select>
             <label>Product Images</label>
