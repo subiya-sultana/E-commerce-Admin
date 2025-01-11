@@ -7,15 +7,18 @@ export default async function handleCategories(req, res) {
 
     // api for creating new category in DB
     if (method === 'POST') {
-        const { categoryName, parentCategory } = req.body;
+        const { categoryName, parentCategory, properties } = req.body;
 
         if (!categoryName) {
             return res.status(400).json({ error: 'Category name is required' });
         }
 
         try {
-            const parent = parentCategory || null; 
-            const CategoryDoc = await Category.create({ name: categoryName, parent });
+            const CategoryDoc = await Category.create({ 
+                name: categoryName,
+                parent: parentCategory || undefined,
+                properties
+            });
             res.status(201).json(CategoryDoc);
         } catch (error) {
             res.status(500).json({ error: 'Failed to create category', details: error.message });
@@ -24,17 +27,20 @@ export default async function handleCategories(req, res) {
 
     // api for updating existing category from DB
     if (method === 'PUT') {
-        const { categoryName, parentCategory, _id } = req.body;
+        const { categoryName, parentCategory, properties, _id } = req.body;
 
         if (!categoryName || !_id) {
             return res.status(400).json({ error: 'Category name and ID are required' });
         }
 
         try {
-            const parent = parentCategory || null; // Ensure parentCategory is null if empty
             const CategoryDoc = await Category.updateOne(
                 { _id },
-                { name: categoryName, parent }
+                { 
+                    name: categoryName,
+                    parent: parentCategory || undefined,
+                    properties,
+                }
             );
             res.status(200).json({ success: true, data: CategoryDoc });
         } catch (error) {
