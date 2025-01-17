@@ -19,3 +19,7 @@ NOW:
 2. comment all console.log
 3. add coments on all files
 4. no products to display message but loader while products gets loaded
+5. responsive
+6. images
+7. hosting
+8. LOGO AND FAVICON
