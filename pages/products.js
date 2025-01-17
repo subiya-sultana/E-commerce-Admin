@@ -59,6 +59,6 @@ export default function Products() {
             </tbody>
         </table>
 
-        <p className="border-2 m-4 p-2">Products page hereeee..... i am so mad right nowww.... and irritateddddddd.... at this point i feel like i deserve all bad happening to meeeeeeee</p>
+        <p className="border-2 m-4 p-2">Products page hereeee..... i am so mad right nowww.... and irritateddddddd.... <br/>at this point i feel like i deserve all bad things happening to meeeeeeee</p>
     </Layout>
 }

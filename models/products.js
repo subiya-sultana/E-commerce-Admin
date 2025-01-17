@@ -5,6 +5,7 @@ const ProductSchema = new Schema({
     category: { type: mongoose.Types.ObjectId, ref: 'Category', default: null},
     description: { type: String, required: true },
     price: { type: Number, required: true },
+    properties: {type:Object}
 });
 
 // Use `models.product` if it exists, otherwise create a new model

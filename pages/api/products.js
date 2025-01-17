@@ -17,17 +17,17 @@ export default async function handleProducts(req, res) {
 
     // api for creating products
     if (method === 'POST'){
-        const {title, category, description, price} = req.body;
+        const {title, category, description, price, properties} = req.body;
         const productDoc = await Product.create({
-            title, category, description, price
+            title, category, description, price, properties
         })
         res.json(productDoc)
     }
 
     // api for updating products
     if (method === 'PUT'){
-        const {_id, title, category, description, price} = req.body;
-        await Product.updateOne({_id}, {title, category, description, price})
+        const {_id, title, category, description, price, properties} = req.body;
+        await Product.updateOne({_id}, {title, category, description, price, properties})
         res.json(true);
     }
 

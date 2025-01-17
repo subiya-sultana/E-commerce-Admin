@@ -1,3 +1,4 @@
+import categories from "@/pages/categories";
 import axios from "axios";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
@@ -8,11 +9,13 @@ export default function ProductForm({
         category: existingCategory,
         description: existingDescription,
         price : existingPrice,
+        properties: existingProperties,
         images,
     }) {
     const [title, setTitle] = useState(existingTitle || '');
     const [category, setCategory] = useState(existingCategory || '')
     const [description, setDescription] = useState(existingDescription || '');
+    const [productProperties, setProductProperties] = useState(existingProperties || {});
     const [price, setPrice] = useState(existingPrice || '');
     const [goToProductsPage, setGoToProductsPage] = useState(false)
     const [allCategories, setAllCategories] = useState([]);
@@ -28,7 +31,13 @@ export default function ProductForm({
 
     async function AddProduct(e) {
         e.preventDefault();
-        const data = {title, category, description, price}
+        const data = {
+            title,
+            category,
+            description,
+            price, 
+            properties: productProperties,
+        }
         if(_id){
             // update product
             await axios.put('/api/products', {...data, _id})
@@ -57,6 +66,25 @@ export default function ProductForm({
         }
     }
 
+    function setProductProp(propName,value) {
+        setProductProperties(prev => {
+          const newProductProps = {...prev};
+          newProductProps[propName] = value;
+          return newProductProps;
+        });
+      }
+
+    const propertiesToFill = [];
+    if (allCategories.length > 0 && category) {
+      let catInfo = allCategories.find(({_id}) => _id === category);
+      propertiesToFill.push(...catInfo.properties);
+      while(catInfo?.parent?._id) {
+        const parentCat = allCategories.find(({_id}) => _id === catInfo?.parent?._id);
+        propertiesToFill.push(...parentCat.properties);
+        catInfo = parentCat;
+      }
+    }
+
     return(
         <form onSubmit={AddProduct}>
             <label>Product Name</label>
@@ -79,6 +107,25 @@ export default function ProductForm({
                     })
                 }
             </select>
+            {
+                propertiesToFill.length > 0 && propertiesToFill.map(p => (
+                    <div key={p.name} className="">
+                        <label>{p.name[0].toUpperCase()+p.name.substring(1)}</label>
+                        <div>
+                            <select value={productProperties[p.name]}
+                                    onChange={ev =>
+                                        setProductProp(p.name,ev.target.value)
+                                    }
+                            >
+                                {
+                                    p.values.map(v => (
+                                        <option key={v} value={v}>{v}</option>
+                                    ))
+                                }
+                            </select>
+                        </div>
+                    </div>
+            ))}
             <label>Product Images</label>
             <div className="mb-2">
                 <label className="cursor-pointer w-24 h-24 bg-gray-300 text-gray-500 text-center flex flex-col items-center justify-center rounded-lg">
@@ -88,6 +135,7 @@ export default function ProductForm({
                     <div>Upload</div>
                     <input type="file" className="hidden" onChange={uploadImages}/>
                 </label>
+
                 {
                     !images?.length && (<div>No photos available to preview this product</div>)
 
