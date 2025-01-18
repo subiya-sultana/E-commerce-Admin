@@ -1,3 +1,4 @@
+/* css file with custom tailwind classes */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -57,9 +58,4 @@ table.basic tr td {
 }
 table.basic a {
   @apply bg-green-900 text-white text-sm py-1 px-2 rounded-md inline-flex gap-2 mr-1;
-}
-.react-sortable {
-  flex-grow: 0;
-  flex-shrink: 1;
-  flex-basis: auto;
 }

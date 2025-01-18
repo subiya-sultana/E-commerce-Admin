@@ -1,8 +1,11 @@
+// handling api's for the category page... hence editing database here, (i.e adding, updating , deleting and fetching categories etc ) 
 import { mongooseConnect } from "@/lib/mongoose";
 import { Category } from "@/models/Category";
 
 export default async function handleCategories(req, res) {
     const { method } = req;
+
+    // database connection
     await mongooseConnect();
 
     // api for creating new category in DB

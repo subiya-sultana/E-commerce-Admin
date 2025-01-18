@@ -1,3 +1,4 @@
+// INDEX.JS page.. starting point of project...also contains dashboard here
 /* eslint-disable @next/next/no-img-element */
 import Layout from "@/components/Layout";
 import { useSession } from "next-auth/react";

@@ -1,3 +1,4 @@
+// /products/new-product page.... for adding new product
 import Layout from "@/components/Layout";
 import ProductForm from "@/components/ProductForm";
 import axios from "axios";

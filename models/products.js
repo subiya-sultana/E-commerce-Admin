@@ -1,3 +1,4 @@
+// Schema for products collection
 import mongoose, { model, models, Schema } from "mongoose";
 
 const ProductSchema = new Schema({

@@ -1,9 +1,11 @@
-// handling api's for the product page... hence editing database here, fetching products etc
+// handling api's for the product page... hence editing database here, (i.e adding, updating , deleting and fetching products etc ) 
 import { mongooseConnect } from "@/lib/mongoose";
 import { Product } from "@/models/Products";
 
 export default async function handleProducts(req, res) {
     const {method} = req;
+
+    // database connection
     await mongooseConnect();
 
     // api for fetching products

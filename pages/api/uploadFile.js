@@ -1,32 +1,4 @@
-// // Taking photos from ProductForm and creating url for the Photos
-
-// // Multipart form data: A REST API format that combines multiple data sets into a single body.
-// import multiparty from 'multiparty'; 
-
-// export default async function handle(req,res){
-//     const form = new multiparty.Form()
-//     const {fields,files} = await new Promise((resolve,reject) => {
-//         form.parse(req, (err, fields, files) => {
-
-//             if (err) reject(err);
-//             resolve({fields,files});
-
-//         });
-//     });
-//     console.log("file: ", files.file)
-//     console.log("length of file: ", files.file.length )
-    
-//     res.status(200).json('ok')
-// }
-
-// // not parsing the our request to json
-// export const config = {
-//     api: {bodyParser: false},
-// };
-
-
-
-
+// uploadFile to take image from input and store that image into cloud ( i.e firebase ) and return te imageUrl to product form
 import { getStorage, ref, uploadBytes } from "firebase/storage";
 import { initializeApp } from "firebase/app";
 import multiparty from "multiparty";
@@ -96,3 +68,36 @@ export default async function handle(req, res) {
 export const config = {
     api: { bodyParser: false },
 };
+
+
+
+
+
+
+// // Taking photos from ProductForm and creating url for the Photos
+
+// // Multipart form data: A REST API format that combines multiple data sets into a single body.
+// import multiparty from 'multiparty'; 
+
+// export default async function handle(req,res){
+//     const form = new multiparty.Form()
+//     const {fields,files} = await new Promise((resolve,reject) => {
+//         form.parse(req, (err, fields, files) => {
+
+//             if (err) reject(err);
+//             resolve({fields,files});
+
+//         });
+//     });
+//     console.log("file: ", files.file)
+//     console.log("length of file: ", files.file.length )
+    
+//     res.status(200).json('ok')
+// }
+
+// // not parsing the our request to json
+// export const config = {
+//     api: {bodyParser: false},
+// };
+
+

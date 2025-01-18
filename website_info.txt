@@ -23,3 +23,4 @@ NOW:
 6. images
 7. hosting
 8. LOGO AND FAVICON
+9. README.MD EDIT

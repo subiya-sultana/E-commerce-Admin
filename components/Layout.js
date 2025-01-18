@@ -1,7 +1,9 @@
+// Layout component... cosists of sideNav and main div
 import { useSession, signIn, signOut } from "next-auth/react"
 import SideNav from "@/components/sideNav";
 
 export default function Layout({children}) {
+  // handling user login
   const { data: session } = useSession()
   if(!session) {
     return (

@@ -1,3 +1,4 @@
+// side navbar component to handle pages traversal
 import Link from "next/link";
 import { useRouter } from "next/router";
 
@@ -6,6 +7,7 @@ export default function SideNav(){
     const activeLink = inactiveLink + " bg-green-100 text-green-900 rounded-l-lg" 
     const router = useRouter();
     const {pathname} = router;
+
     return(
         <aside className="text-white p-4 pr-0">
             <Link href={'/'} className="flex gap-1 mb-4 p-2">

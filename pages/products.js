@@ -1,3 +1,4 @@
+// Product page... for adding, editing, deleting and displaying products
 import Layout from "@/components/Layout";
 import Spinner from "@/components/Spinner";
 import axios from "axios";
@@ -7,17 +8,19 @@ import { useEffect, useState } from "react";
 export default function Products() {
     const [products, setProducts] = useState(null);
     const [loading, setLoading] = useState(true)
-    // fetching products
+
+    // fetching products from api
     useEffect(()=>{
         axios.get('/api/products').then(response=>{
             setProducts(response.data)
-            console.log(response.data)
+            // console.log(response.data)
             setLoading(false)
         }).catch(err=>{
             console.log("Error fetching products: ",err)
             setLoading(false)
         })
     },[])
+    
     return <Layout>
 
         <div className="flex justify-between">

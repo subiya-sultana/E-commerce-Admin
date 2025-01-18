@@ -1,5 +1,5 @@
+// Product form component to deal with adding new products and editing products (most important component so don't edit without thinking)
 /* eslint-disable @next/next/no-img-element */
-// Product form component to deal with adding new products and editing products
 import axios from "axios";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
@@ -31,6 +31,7 @@ export default function ProductForm({
 
     // console.log("product form data here.... ", existingTitle, existingDescription, existingPrice, _id)
 
+    // fetching all the categories so that we can display them in form
     useEffect(() => {
         axios.get('/api/categories')
             .then(result => {
@@ -98,9 +99,7 @@ export default function ProductForm({
         }
     }
     
-    
-    
-    // function to drag and drope images to rearrange thier order
+    // function to drag and drop images to rearrange thier order
     function updateImagesOrder(images) {
         setImages(images);
     }
@@ -113,7 +112,8 @@ export default function ProductForm({
             return newProductProps;
         });
     }
-    // merging parent product properties and child product properties
+
+    // ineriting parent product properties to child product properties 
     const propertiesToFill = [];
     if (allCategories.length > 0 && category) {
         let catInfo = allCategories.find(({ _id }) => _id === category);
