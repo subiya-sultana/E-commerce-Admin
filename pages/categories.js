@@ -151,7 +151,7 @@ function Categories({ swal }) {
             </select>
          </div>
          <div className="mb-2">
-            <label className="p-1 pl-1 inline-block font-semibold pr-4">Properties of category</label>
+            <label className="p-1 pl-1 inline-block font-semibold pr-4">Properties of new category</label>
             <button type="button" className="btn-default text-sm mb-2" onClick={addProperty}>Add new property</button>
             {
                properties.length > 0 ? (
@@ -209,7 +209,7 @@ function Categories({ swal }) {
                   > Cancel</button>
                )
             }
-            <button type="submit" className="btn-primary py-1 ">Save</button>
+            <button type="submit" className="btn-primary py-1 ">Save category</button>
          </div>
       </form>
 

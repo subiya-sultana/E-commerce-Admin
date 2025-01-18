@@ -1,4 +1,5 @@
 import Layout from "@/components/Layout";
+import Spinner from "@/components/Spinner";
 import axios from "axios";
 import Link from "next/link";
 import { useEffect, useState } from "react";
@@ -18,7 +19,17 @@ export default function Products() {
         })
     },[])
     return <Layout>
-        <Link href={'/products/new-product'} className="bg-green-700 text-white rounded-md p-2">Add new product</Link>
+
+        <div className="flex justify-between">
+            <h1>Products</h1>
+
+            <Link href={'/products/new-product'} className="bg-green-700 text-white rounded-md p-2 px-4 flex">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6 pr-1">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v6m3-3H9m12 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                </svg>
+                <p> Add new product</p>
+            </Link>
+        </div>
 
         <table className="basic mt-2">
             <thead>
@@ -31,7 +42,11 @@ export default function Products() {
             </thead>
             <tbody>
                 {
-                    loading? "loading products...." :
+                    loading? 
+                        <tr className="flex justify-center items-center">
+                            <p>Loading products...</p><Spinner/>
+                        </tr> 
+                    :
                         products ? 
                             products.map(product => (
                                 <tr key={product._id}>
@@ -54,11 +69,10 @@ export default function Products() {
                                     <td>{product.price}</td> */}
                                 </tr>
                             ))
-                        : "No products to display"
+                        : <tr className="text-gray-500 text-center">No products availabe to display. ( Click on <q>add new products</q> and add products )</tr>
                 }
             </tbody>
         </table>
 
-        <p className="border-2 m-4 p-2">Products page hereeee..... i am so mad right nowww.... and irritateddddddd.... <br/>at this point i feel like i deserve all bad things happening to meeeeeeee</p>
     </Layout>
 }
