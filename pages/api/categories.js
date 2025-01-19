@@ -1,12 +1,17 @@
 // handling api's for the category page... hence editing database here, (i.e adding, updating , deleting and fetching categories etc ) 
 import { mongooseConnect } from "@/lib/mongoose";
 import { Category } from "@/models/Category";
+import { getServerSession } from "next-auth";
+import { authOptions, isAdminRequest } from "./auth/[...nextauth]";
 
 export default async function handleCategories(req, res) {
     const { method } = req;
 
     // database connection
     await mongooseConnect();
+
+    // checking if admin is requesting for api's
+    await isAdminRequest(req,res);
 
     // api for creating new category in DB
     if (method === 'POST') {

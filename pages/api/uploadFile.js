@@ -3,6 +3,7 @@ import { getStorage, ref, uploadBytes } from "firebase/storage";
 import { initializeApp } from "firebase/app";
 import multiparty from "multiparty";
 import fs from "fs";
+import { isAdminRequest } from "./auth/[...nextauth]";
 
 const firebaseConfig = {
     apiKey: "AIzaSyAM109Nf7auRvu2aiDtjmpsop_gTJwykuY",
@@ -18,6 +19,13 @@ const app = initializeApp(firebaseConfig);
 const storage = getStorage(app);
 
 export default async function handle(req, res) {
+
+        // database connection
+        await mongooseConnect();
+    
+        // checking if admin is requesting for api's
+        await isAdminRequest(req,res)
+
     if (req.method === "POST") {
         const form = new multiparty.Form();
 

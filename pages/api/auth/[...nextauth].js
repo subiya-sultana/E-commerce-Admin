@@ -1,35 +1,38 @@
-// file to make connection of google authentication
-import clientPromise from '@/lib/mongodb';
-import { MongoDBAdapter } from '@auth/mongodb-adapter';
-import NextAuth from 'next-auth';
-import GoogleProvider from 'next-auth/providers/google';
+import NextAuth, {getServerSession} from 'next-auth'
+import GoogleProvider from 'next-auth/providers/google'
+import {MongoDBAdapter} from "@next-auth/mongodb-adapter";
+import clientPromise from "@/lib/mongodb";
 
-if (!process.env.GOOGLE_ID || !process.env.GOOGLE_SECRET) {
-  throw new Error('Missing Google authentication environment variables');
-}
+// SET ADMINS HERE
+const adminEmails = ['itsmesubiya@gmail.com', 'maimoonakhanam18@gmail.com', 'alkaankausar22@gmail.com', 'nusrathj44@gmail.com'];
 
-export default NextAuth({
+export const authOptions = {
+  secret: process.env.SECRET,
   providers: [
     GoogleProvider({
       clientId: process.env.GOOGLE_ID,
-      clientSecret: process.env.GOOGLE_SECRET,
+      clientSecret: process.env.GOOGLE_SECRET
     }),
   ],
   adapter: MongoDBAdapter(clientPromise),
-  session: {
-    strategy: 'jwt', // Use 'database' if session data should be stored in MongoDB
-  },
   callbacks: {
-    async session({ session, token }) {
-      // Attach additional fields to the session if needed
-      session.user.id = token.sub; // Add user ID
-      return session;
-    },
-    async jwt({ token, user }) {
-      if (user) {
-        token.sub = user.id; // Attach user ID to the token
+    session: ({session,token,user}) => {
+      if (adminEmails.includes(session?.user?.email)) {
+        return session;
+      } else {
+        return false;
       }
-      return token;
     },
   },
-});
+};
+
+export default NextAuth(authOptions);
+
+export async function isAdminRequest(req,res) {
+  const session = await getServerSession(req,res,authOptions);
+  if (!adminEmails.includes(session?.user?.email)) {
+    res.status(401);
+    res.end();
+    throw 'not an admin';
+  }
+}

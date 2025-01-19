@@ -1,12 +1,16 @@
 // handling api's for the product page... hence editing database here, (i.e adding, updating , deleting and fetching products etc ) 
 import { mongooseConnect } from "@/lib/mongoose";
 import { Product } from "@/models/Products";
+import { isAdminRequest } from "./auth/[...nextauth]";
 
 export default async function handleProducts(req, res) {
     const {method} = req;
 
     // database connection
     await mongooseConnect();
+
+    // checking if admin is requesting for api's
+    await isAdminRequest(req,res)
 
     // api for fetching products
     if (method === 'GET'){
