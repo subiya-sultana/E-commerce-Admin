@@ -24,16 +24,19 @@ export default function Products() {
 
     return <Layout>
 
-        <div className="flex justify-between">
-            <h1>Products</h1>
+        <div className="flex flex-col justify-between items-center sm:flex-row">
+            <h1 className="text-center">Products</h1>
 
-            <Link href={'/products/new-product'} className="bg-green-700 text-white rounded-md p-2 px-4 flex">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6 pr-1">
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v6m3-3H9m12 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
-                </svg>
-                <p> Add new product</p>
-            </Link>
+            <div className="w-full sm:w-auto">
+                <Link href={'/products/new-product'} className="bg-green-700 text-white rounded-md p-2 px-4 flex items-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6 pr-1">
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v6m3-3H9m12 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                    </svg>
+                    <p> Add new product</p>
+                </Link>
+            </div>
         </div>
+
 
         <table className="basic">
             <thead>
@@ -44,11 +47,10 @@ export default function Products() {
                 </tr>
             </thead>
             <tbody>
-                {loading ? (
-                    <tr>
-                        <td colSpan="3" className="text-center py-4">
-                            <Spinner />
-                        </td>
+                {
+                    loading ? (
+                    <tr className="flex justify-center items-center">
+                        <p>Loading categories...</p><Spinner/>
                     </tr>
                 ) : products && products.length > 0 ? (
                     products.map((product) => (
@@ -64,7 +66,7 @@ export default function Products() {
                                 Title: {product.title} <br /> Price: ₹{product.price}
                             </td>
                             <td>
-                                <Link href={`/products/edit/${product._id}`} className="link">
+                                <Link href={`/products/edit/${product._id}`} className="link mb-1 ">
                                     <svg
                                         xmlns="http://www.w3.org/2000/svg"
                                         fill="none"
@@ -110,7 +112,6 @@ export default function Products() {
                 )}
             </tbody>
         </table>
-
 
     </Layout>
 }

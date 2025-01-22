@@ -35,7 +35,7 @@ export default function Layout({children}) {
       </div>
       <div className="flex">
         <SideNav show={showNav} setShow={setShowNav}/>
-        <div className="bg-green-200 flex-grow m-2 p-3 rounded-lg min-h-[95vh]">{children}</div>
+        <div className="overflow-y-scroll overflow-x-hidden bg-green-200 flex-grow m-2 p-3 rounded-lg h-[96vh] myScrollbar">{children}</div>
       </div>
     </div>
   );

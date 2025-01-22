@@ -14,6 +14,32 @@
     --foreground: #ededed;
   }
 } */
+.myScrollbar {
+  @apply scrollbar-thin scrollbar-thumb-green-900 scrollbar-track-transparent;
+  scrollbar-width: thin;
+}
+
+.myScrollbar:hover {
+  scrollbar-color: #065f46 transparent; /* Dark green thumb, transparent track */
+}
+
+@layer utilities {
+  .myScrollbar::-webkit-scrollbar {
+    height: 80px;
+  }
+  .myScrollbar::-webkit-scrollbar-thumb {
+    border-radius: 9999px;
+    background-color: #065f46;
+  }
+  .myScrollbar::-webkit-scrollbar-track {
+    border-radius: 9999px;
+    background: transparent;
+  }
+  .myScrollbar::-webkit-scrollbar-button {
+    display: none;
+  }
+}
+
 
 body {
   @apply bg-green-900;
@@ -24,7 +50,7 @@ img {
 }
 
 input, textarea, select {
-  @apply border-2 border-gray-300 rounded-md px-2 py-1 w-full;
+  @apply border border-gray-300 rounded-md px-2 py-1 w-full;
   @apply mb-2;
 }
 input:focus, textarea:focus, select:focus {
@@ -32,22 +58,22 @@ input:focus, textarea:focus, select:focus {
 }
 
 label {
-  @apply text-green-900;
+  @apply text-green-900 px-1;
 }
 
 h1 {
-  @apply text-green-900 mb-2 text-2xl font-bold font-mono;
+  @apply text-green-900 mb-2 text-2xl font-bold font-mono text-center;
 }
 
 .btn-primary {
   @apply bg-green-900 text-white px-4 py-1 rounded-md;
 }
 .btn-default{
-  @apply bg-gray-300 px-3 py-1 rounded-md text-green-900 font-semibold;
+  @apply bg-green-300 px-3 py-1 rounded-md text-green-900 font-semibold;
 }
 
 table.basic {
-  @apply w-full mt-2 border-collapse align-top overflow-hidden border border-green-600;
+  @apply w-full mt-2 border-collapse align-top overflow-hidden border border-green-600 shadow-green-400 shadow-inner;
   border-spacing: 0;
 }
 table.basic thead tr td {
@@ -56,6 +82,6 @@ table.basic thead tr td {
 table.basic tr td {
   @apply border border-green-500 p-1 border-collapse;
 }
-table.basic a {
+table.basic a, .actionBtn{
   @apply bg-green-900 text-white text-sm py-1 px-2 rounded-md inline-flex gap-2 mr-1;
 } 
