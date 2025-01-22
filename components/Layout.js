@@ -35,7 +35,7 @@ export default function Layout({children}) {
       </div>
       <div className="flex">
         <SideNav show={showNav} setShow={setShowNav}/>
-        <div className="bg-green-100 flex-grow m-2 p-3 rounded-lg min-h-[80%]">{children}</div>
+        <div className="bg-green-200 flex-grow m-2 p-3 rounded-lg min-h-[95vh]">{children}</div>
       </div>
     </div>
   );

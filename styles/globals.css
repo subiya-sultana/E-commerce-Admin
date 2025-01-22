@@ -3,7 +3,7 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
+/* :root {
   --background: #ffffff;
   --foreground: #171717;
 }
@@ -13,11 +13,10 @@
     --background: #0a0a0a;
     --foreground: #ededed;
   }
-}
+} */
 
 body {
-  color: var(--foreground);
-  background: var(--background);
+  @apply bg-green-900;
   font-family: Arial, Helvetica, sans-serif;
 }
 img {
@@ -37,7 +36,7 @@ label {
 }
 
 h1 {
-  @apply text-green-900 mb-2 text-2xl font-medium;
+  @apply text-green-900 mb-2 text-2xl font-bold font-mono;
 }
 
 .btn-primary {
@@ -48,14 +47,15 @@ h1 {
 }
 
 table.basic {
-  @apply w-full
+  @apply w-full mt-2 border-collapse align-top overflow-hidden border border-green-600;
+  border-spacing: 0;
 }
 table.basic thead tr td {
-  @apply bg-green-300 ;
+  @apply bg-green-300 uppercase text-green-900 font-bold;
 }
 table.basic tr td {
-  @apply border border-green-300 p-1 ;
+  @apply border border-green-500 p-1 border-collapse;
 }
 table.basic a {
   @apply bg-green-900 text-white text-sm py-1 px-2 rounded-md inline-flex gap-2 mr-1;
-}
+} 
