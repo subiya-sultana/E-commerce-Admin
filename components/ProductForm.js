@@ -74,31 +74,33 @@ export default function ProductForm({
         }
     }, [goToProductsPage, router]);
 
-    // function to handle image upload
+    // Function to handle image upload
     async function uploadImages(ev) {
         const files = ev.target.files;
-        if (files?.length > 0) {
-            setIsUploading(true);
-            const formData = new FormData();
-            for (const file of files) {
-                formData.append('file', file);
-            }
-    
-            try {
-                const res = await axios.post('/api/uploadFile', formData);
-                // Ensure res.data.url is a resolved value (string) and not a promise
-                const imageUrl = res.data.url;
-                if (imageUrl) {
-                    setImages((oldImages) => [...oldImages, imageUrl]);
-                }
-            } catch (error) {
-                console.error('Error uploading image:', error);
-            } finally {
-                setIsUploading(false);
-            }
+        if (!files?.length) return;
+
+        setIsUploading(true);
+        const formData = new FormData();
+
+        // Append all selected files
+        for (const file of files) {
+            formData.append('file', file);
+        }
+
+        try {
+            const res = await axios.post('/api/uploadFile', formData);
+            
+            // Ensure response contains a valid URL or array of URLs
+            const imageUrls = Array.isArray(res.data.url) ? res.data.url : [res.data.url];
+
+            setImages((prevImages) => [...prevImages, ...imageUrls]);
+        } catch (error) {
+            console.error('Error uploading image:', error);
+        } finally {
+            setIsUploading(false);
         }
     }
-    
+
     // function to drag and drop images to rearrange thier order
     function updateImagesOrder(images) {
         setImages(images);
